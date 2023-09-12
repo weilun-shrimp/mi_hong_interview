@@ -5,8 +5,9 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel">{{ $user ? 'Edit' : 'Create' }} User {{ $user ? $user->id : '' }}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ $user ? route('user.update', ['id' => $user->id]) : route('user.store') }}">
+            <form action="{{ $user ? route('user.update', ['id' => $user->id]) : route('user.store') }}" method="POST">
                 @csrf
+                <input type="hidden" name="_method" value="{{ $user ? 'PUT' : 'POST' }}">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
